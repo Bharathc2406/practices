@@ -1,0 +1,56 @@
+body{
+    
+    background: rgb(196, 205, 214);
+}
+
+h1{
+    color:blue ;
+    font-weight:bold ;
+    padding: 30px;
+    display: flex;
+    align-items:  baseline;
+    justify-content:flex-start ;
+}
+
+h2{
+    color:black;
+    font-weight: normal;
+    
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.box{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.login{
+    color:blue;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+button.forgottenpassword{
+    color:blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.createnewaccount{
+     color:green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h5{
+    color:black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
