@@ -1,0 +1,31 @@
+body{
+    background-color: blanchedalmond;
+     
+}
+h2{
+    display: inline-block;
+    color: green;
+}
+
+.box{
+    background-color: whitesmoke;
+    width: 500px;
+    border: 15px;
+    margin-left: 25% !important ; 
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    border-bottom: 5%;
+    border-top: 5%;
+    border-width: 5%;
+}
+
+h4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon-image{
+    border-radius: 35px;
+}
