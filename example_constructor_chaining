@@ -1,0 +1,27 @@
+// example for constructor chaining
+package example_constructor_chaining;
+
+public class User {
+
+	User(String name) {
+		this("Jerry", 101);
+
+	}
+
+	User(String name, int id) {
+
+		System.out.println("Name:" + name + "  Id:" + id);
+	}
+
+	User(int age) {
+		this("Jerry");
+		System.out.println("Age:"+age);
+	}
+
+	public static void main(String[] args) {
+		User u = new User(20);
+	}
+
+}
+
+//----------------------
