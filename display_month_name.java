@@ -49,6 +49,9 @@ public class Demo11 {
 		case 12:
 			System.out.println("DEC");
 			break;
+        default:
+			System.out.println("invalid");
+            break;
 		}
 		sc.close();
 
