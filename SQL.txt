@@ -35,7 +35,7 @@
 
 
 (*)Constraint -> rules which is given to column to restrict the data
-			-> unique -- should br present null values
+			-> unique -- should not be present duplicate values 
 			-> not null -- should avoid null values 
 			-> primary key -- it is unique + not null 
 			-> check -- extra validation check()
