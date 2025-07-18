@@ -1,0 +1,31 @@
+**********Linux***********
+
+(*)Linux -> It is open source operating system.
+
+(*)Kernel -> It is present between hardware and application.
+	  -> It is a brain of Linux.
+	  -> It is a computer program  which is the core interface which connects hardware compnents to the software process.
+
+(*) Operations Performed by Kernel:
+	-> Resource Management
+	-> Memory Management
+	-> Device Management
+	-> File System Management - interface b/w a process and operating system.
+
+(*)Basic Linux Commands:
+	pwd     -  shows present working directory
+	mkdir   -  creates directory
+	echo	-  prints the text
+	ls	-  list the files and folder
+	clear	-  clears the terminal
+	whoami	-  shows  the present username
+	who	-  shows the all loggedin usernames
+	w	-  same as the who but also shows the current process
+	rm	-  to delete a file 
+	touch	-  create the .txt files
+	cat	-  display the content of the file
+	exit 	-  exit the terminal and closes
+	date	-  displays date and time
+	mv	-  moves the file from source to destination
+	histroy -  displays the commands which are used recently 	
+	cp	-  used to copy a file
