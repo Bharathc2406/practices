@@ -1,0 +1,44 @@
+**********SQL***********
+
+
+(*)Data: It is a rawfact which descibes attribute of an entity.
+
+	rawfact   ->   unprocessed
+	attribute ->   properties
+	entity    ->   object
+
+(*)Database: It is a container or medium to store a data.
+
+(*)SQL: Structured Query Language used to interact with database.
+
+(*)SEQUEL: Structured English Query Language. It is introduced by donalad chamerlin and raymond boycess
+
+(*)DBMS: It manages  and maintain database by performing CRUD.
+	C -> Create/Insert
+	R -> Read/Retrive
+	U -> Update/Modify
+	D -> Delete/Drop
+
+(*)DataModel -> Hierchical Model -----> storing data in form of tree structure
+		Network Model  ------> storing data in the form where the single child node connected to multiple parent node
+		Realitional Model -------> storing data in the form of tables --> tables is a combination of column and rows
+						rows --> is also a tuple it is a representation of all attribute of an 1 entity 
+						column -> is also a attribute it a representation of attribute of an entity 
+		Documentation Model ------> storing the data in the form of files eg: JSON and XML
+
+(*) Datatype -> Datatype is a keyword which defines what type of data to store.
+		->char -- 2000 bytes
+		->varchar -- 2000 bytes
+		->varchar2 -- 2000 bytes
+		->number -- number(presice,scale)
+		->date -- DD-MMM-YYYY
+
+
+(*)Constraint -> rules which is given to column to restrict the data
+			-> unique -- should br present null values
+			-> not null -- should avoid null values 
+			-> primary key -- it is unique + not null 
+			-> check -- extra validation check()
+			-> default -- provides default values
+			-> foreign key -- forms relationship from one table to another
+					foreign key colName refrences parentTableName colName
