@@ -1,0 +1,55 @@
+creating tables and queries
+
+
+create table Customer(
+	customer_Id int primary key,
+	customer_Name varchar(20) not null,
+	customer_Age int  not null,
+	customer_Country varchar(20) not null,
+	customer_State varchar(20) not null);
+
+create table Order(
+	order_Id int primary key,
+	order_Name varchar(20) not null,
+	order_Price int not null,
+	order_date date not null
+	customer_Id int ,
+	foreign key customer_Id Customer customer_Id);
+
+
+
+<SQL>select * from Customer; --->displays all detail of the customer
+
+
+(*)display the customer_Id,Customer_Name like the starting with J And B 
+	
+	<SQL>select customer_Id,customer_Name from Customer
+		where customer_name like "J%" or customer_name "B%"; 
+
+
+(*)display the order Id , order name, customer id  
+	<SQL>Select order_Id,order_Name,customer_id from Order;
+
+(*)display the all the orders
+	<SQL>Select * from Order;
+
+(*)display all the orders which is having order price bellow 200
+	<SQL>Select *from Order
+		where order_Price <=200;
+
+(*)display name,age,country and state of an customer where age is above 18
+	<SQL>Select customer_Name,customer_Age,customer_Country,customer_State from Customer 
+		where customer_age >=18;
+
+(*)display all the details of order where customer id is 1,4,5
+	<SQL>Select *from Order
+		where customer_id in(1,4,5);
+
+(*)display order name,order price in the order which is having order price above 2000
+	<SQL>Select order_Name,order_Price from Order
+		where order_Price >=2000;
+
+
+(*)display customer name which are present in country india
+	<SQL>Select customer_Name,customer_Country from Customer
+		where customer_Country  like 'india';
