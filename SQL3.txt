@@ -1,0 +1,155 @@
+//how to create user:
+
+conn system
+create user userName identified by password;
+grant connect , resource to userName;
+
+
+
+SQL> conn bharath/tiger;
+Connected.
+SQL> show user
+USER is "BHARATH"
+SQL> select * from tab
+  2  ;
+
+no rows selected
+
+SQL> create table  student1(
+  2  studentId int primary key,
+  3  studentName varchar(20) not null,
+  4  studentAge int not null);
+
+Table created.
+
+SQL> select * from student1;
+
+no rows selected
+
+SQL> insert into student1 values(1,'Raju',18);
+
+1 row created.
+
+SQL> select * from student1;
+
+ STUDENTID STUDENTNAME          STUDENTAGE
+---------- -------------------- ----------
+         1 Raju                         18
+
+SQL> insert into student1 values(2,'Ravi',18);
+
+1 row created.
+
+SQL> insert into student1 values(3,'Ravi',19);
+
+1 row created.
+
+SQL> insert into student1 (studentId ,studentName, studentAge) values (4,'Jhon',19);
+
+1 row created.
+
+SQL> insert into student1 (studentId ,studentName, studentAge) values (5,'Sachin',18);
+
+1 row created.
+
+SQL> select * from student1;
+
+ STUDENTID STUDENTNAME          STUDENTAGE
+---------- -------------------- ----------
+         1 Raju                         18
+         2 Ravi                         18
+         3 Ravi                         19
+         4 Jhon                         19
+         5 Sachin                       18
+
+
+
+SQL> select studentId from student1;
+
+ STUDENTID
+----------
+         1
+         2
+         3
+         4
+         5
+
+SQL> select StudentName  from student1
+  2  where studentAge >= 18;
+
+STUDENTNAME
+--------------------
+Raju
+Ravi
+Ravi
+Jhon
+Sachin
+
+SQL> select StudentName from student1
+  2  where studentAge >19;
+
+no rows selected
+
+SQL> select * from student1
+  2  where studentName like 'R%';
+
+ STUDENTID STUDENTNAME          STUDENTAGE
+---------- -------------------- ----------
+         1 Raju                         18
+         2 Ravi                         18
+         3 Ravi                         19
+
+SQL> select * from student1
+  2  where studentAge >18;
+
+ STUDENTID STUDENTNAME          STUDENTAGE
+---------- -------------------- ----------
+         3 Ravi                         19
+         4 Jhon                         19
+
+SQL> select  * from student1
+  2  where studentId  in (2,1,5);
+
+ STUDENTID STUDENTNAME          STUDENTAGE
+---------- -------------------- ----------
+         1 Raju                         18
+         2 Ravi                         18
+         5 Sachin                       18
+
+SQL> rename student1 to student0;
+
+Table renamed.
+
+SQL> select * from student1;
+select * from student1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from student0;
+
+ STUDENTID STUDENTNAME          STUDENTAGE
+---------- -------------------- ----------
+         1 Raju                         18
+         2 Ravi                         18
+         3 Ravi                         19
+         4 Jhon                         19
+         5 Sachin                       18
+
+
+
+SQL> alter table student0
+  2  add studentPassout int ;
+
+Table altered.
+
+SQL> select * from student0;
+
+ STUDENTID STUDENTNAME          STUDENTAGE STUDENTPASSOUT
+---------- -------------------- ---------- --------------
+         1 Raju                         18
+         2 Ravi                         18
+         3 Ravi                         19
+         4 Jhon                         19
+         5 Sachin                       18
