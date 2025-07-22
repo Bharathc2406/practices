@@ -1,0 +1,432 @@
+
+SQL> show user
+USER is "BHARATH"
+SQL>  create table department(
+  2  deptNo int primary key,
+  3  deptName varchar(20) not null,
+  4  deptLoc varchar(20) not null);
+
+Table created.
+
+SQL> select * from department;
+no rows selected
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPARTMENT                     TABLE
+STUDENT0                       TABLE
+
+SQL> drop table department;
+
+Table dropped.
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+BIN$ny+8julgRRuDuwOPgM2grA==$0 TABLE
+STUDENT0                       TABLE
+
+SQL> purge table department;
+
+Table purged.
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+STUDENT0                       TABLE
+
+SQL>  create table department(
+  2  deptNo number(10) primary key,
+  3  deptName varchar(20) not null,
+  4  deptLoc varchar(20) not null);
+
+Table created.
+
+SQL> create table student1(
+  2  studentId number(10) primary key,
+  3  studentName varchar(20) not null,
+  4  deptNo number(10),
+  5  foreign key (deptNo) references department (deptNo));
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPARTMENT                     TABLE
+STUDENT0                       TABLE
+STUDENT1                       TABLE
+
+SQL> insert into department values(10,'CSE','Davangere');
+
+1 row created.
+
+SQL> insert into department values(20,'ECE','Bengaluru');
+
+1 row created.
+
+SQL> insert into department values(30,'MEC','Mumbai');
+
+1 row created.
+
+SQL> insert into department values(40,'CIV','Chennai');
+
+1 row created.
+
+SQL> insert into department values(50,'IS','Davangere');
+
+1 row created.
+
+SQL> select * from department;
+
+    DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- --------------------
+        10 CSE                  Davangere
+        20 ECE                  Bengaluru
+        30 MEC                  Mumbai
+        40 CIV                  Chennai
+        50 IS                   Davangere
+
+SQL> desc student1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENTID                                 NOT NULL NUMBER(10)
+ STUDENTNAME                               NOT NULL VARCHAR2(20)
+ DEPTNO                                             NUMBER(10)
+
+SQL> insert into student1 values(101,'Raju',50);
+1 row created.
+
+SQL> insert into student1 values(102,'Ravi',10);
+1 row created.
+
+SQL> insert into student1 values(103,'Sachin',40);
+1 row created.
+
+SQL> insert into student1 values(104,'Tom',20);
+1 row created.
+
+SQL> insert into student1 values(105,'Jerry',20);
+1 row created.
+
+SQL> insert into student1 values(106,'Jhon',20);
+1 row created.
+
+SQL> insert into student1 values(107,'Jhonny',30);
+1 row created.
+SQL> insert into student1 values(108,'Chandhu',50);
+1 row created.
+
+SQL> insert into student1 values(109,'Rhaul',30);
+1 row created.
+
+SQL> insert into student1 values(110,'Rachin',10);
+1 row created.
+
+SQL> select * from student1;
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       103 Sachin                       40
+       104 Tom                          20
+       105 Jerry                        20
+       106 Jhon                         20
+       107 Jhonny                       30
+       108 Chandhu                      50
+       109 Rhaul                        30
+       110 Rachin                       10
+
+10 rows selected.
+
+SQL> select * from department;
+
+    DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- --------------------
+        10 CSE                  Davangere
+        20 ECE                  Bengaluru
+        30 MEC                  Mumbai
+        40 CIV                  Chennai
+        50 IS                   Davangere
+
+SQL> select distinct deptNo from student1;
+
+    DEPTNO
+----------
+        30
+        20
+        50
+        40
+        10
+
+SQL> select studentName as sname from student1;
+
+SNAME
+--------------------
+Raju
+Ravi
+Sachin
+Tom
+Jerry
+Jhon
+Jhonny
+Chandhu
+Rhaul
+Rachin
+
+10 rows selected.
+
+SQL> select * from student1
+  2  where studentName = 'Tom' ;
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       104 Tom                          20
+
+SQL> select studentName ,deptNo from student1
+  2  where studentName in ('Raju','Tom','Rachin');
+
+STUDENTNAME              DEPTNO
+-------------------- ----------
+Raju                         50
+Tom                          20
+Rachin                       10
+
+SQL> select * from student1
+  2  where deptNo =40 and deptNo=30;
+
+no rows selected
+
+SQL> select * from student1
+  2  where deptNo =40 or deptNo=30;
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       103 Sachin                       40
+       107 Jhonny                       30
+       109 Rhaul                        30
+
+SQL> select * from student1
+  2  where deptNo not in (40,30);
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       104 Tom                          20
+       105 Jerry                        20
+       106 Jhon                         20
+       108 Chandhu                      50
+       110 Rachin                       10
+
+7 rows selected.
+
+SQL> select * from student1
+  2  where studentName like '%a%';
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       103 Sachin                       40
+       108 Chandhu                      50
+       109 Rhaul                        30
+       110 Rachin                       10
+
+6 rows selected.
+
+SQL> select * from student1
+  2  where studentName not like '%a%';
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       104 Tom                          20
+       105 Jerry                        20
+       106 Jhon                         20
+       107 Jhonny                       30
+
+SQL> select * from student1
+  2  where studentName like '%a%' or studentName like '_e%';
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       103 Sachin                       40
+       105 Jerry                        20
+       108 Chandhu                      50
+       109 Rhaul                        30
+       110 Rachin                       10
+
+7 rows selected.
+
+
+SQL> select * from student1
+  2  where deptNo is not null;
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       103 Sachin                       40
+       104 Tom                          20
+       105 Jerry                        20
+       106 Jhon                         20
+       107 Jhonny                       30
+       108 Chandhu                      50
+       109 Rhaul                        30
+       110 Rachin                       10
+
+10 rows selected.
+
+SQL> select * from student1
+  2  where deptNo  is null;
+
+no rows selected
+
+SQL> select * from student1
+  2  where studentName like '%a%' and  deptNo in (20,10);
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       102 Ravi                         10
+       110 Rachin                       10
+
+SQL> select initcap ('ravi is a talented learner') from dual;
+
+INITCAP('RAVIISATALENTEDLE
+--------------------------
+Ravi Is A Talented Learner
+
+SQL> select upper ('ravi is a talented learner') from dual;
+
+UPPER('RAVIISATALENTEDLEAR
+--------------------------
+RAVI IS A TALENTED LEARNER
+
+SQL> select lower ('      HELLO WORLD        ') from dual;
+
+LOWER('HELLOWORLD')
+-------------------------
+      hello world
+
+SQL> select substr('Hello World',7,5) from dual;
+
+SUBST
+-----
+World
+
+SQL> select substr('Hello World',1,5) from dual;
+
+SUBST
+-----
+Hello
+
+SQL> select substr('Hello World',1,2) from dual;
+
+SU
+--
+He
+
+SQL> select substr (studentName ,1, length(studentName)/2) from student1;
+
+SUBSTR(STUDENTNAME,1
+--------------------
+Ra
+Ra
+Sac
+T
+Je
+Jh
+Jho
+Cha
+Rh
+Rac
+
+10 rows selected.
+
+SQL> select substr (studentName ,1, length(studentName)/2+1) from student1;
+
+SUBSTR(STUDENTNAME,1
+--------------------
+Raj
+Rav
+Sach
+To
+Jer
+Jho
+Jhon
+Chan
+Rha
+Rach
+
+10 rows selected.
+
+SQL> select substr (studentName ,-1, length(studentName)/2) from student1;
+
+S
+-
+u
+i
+n
+m
+y
+n
+y
+u
+l
+n
+
+10 rows selected.
+
+SQL> select instr('APPU','P',2,1) from dual;
+
+INSTR('APPU','P',2,1)
+---------------------
+                    2
+
+SQL> select instr('APPU','P',1,1) from dual;
+
+INSTR('APPU','P',1,1)
+---------------------
+                    2
+
+SQL> select trim (leading  'A' from 'APPU') from dual;
+
+TRI
+---
+PPU
+
+SQL> select trim (trailing  'U' from 'APPU') from dual;
+
+TRI
+---
+APP
+
+SQL> select trim (both  'P' from 'APPU') from dual;
+
+TRIM
+----
+APPU
+
+SQL> select trim (both  'U' from 'APPU') from dual;
+
+TRI
+---
+APP
+
+SQL> select reverse ('MAM') from dual;
+
+REV
+---
+MAM
+
+SQL> select reverse ('APPU') from dual;
+
+REVE
+----
+UPPA
