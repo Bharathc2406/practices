@@ -1,0 +1,375 @@
+SQL> conn bharath/tiger
+Connected.
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPARTMENT                     TABLE
+STUDENT0                       TABLE
+STUDENT1                       TABLE
+
+SQL> select * from student1;
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       103 Sachin                       40
+       104 Tom                          20
+       105 Jerry                        20
+       106 Jhon                         20
+       107 Jhonny                       30
+       108 Chandhu                      50
+       109 Rhaul                        30
+       110 Rachin                       10
+
+10 rows selected.
+
+SQL> select * from department;
+
+    DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- --------------------
+        10 CSE                  Davangere
+        20 ECE                  Bengaluru
+        30 MEC                  Mumbai
+        40 CIV                  Chennai
+        50 IS                   Davangere
+
+SQL> select  mod(10,2) from dual;
+
+ MOD(10,2)
+----------
+         0
+
+SQL> select  mod(11,2) from dual;
+
+ MOD(11,2)
+----------
+         1
+
+SQL> select  sqrt(4) from dual;
+
+   SQRT(4)
+----------
+         2
+
+SQL> select  sqrt(144) from dual;
+
+ SQRT(144)
+----------
+        12
+
+SQL> select  sqrt(139) from dual;
+
+ SQRT(139)
+----------
+11.7898261
+
+SQL> select  power(2,2) from dual;
+
+POWER(2,2)
+----------
+         4
+
+SQL> select  power(2,4) from dual;
+
+POWER(2,4)
+----------
+        16
+
+SQL> select  power(4,2) from dual;
+
+POWER(4,2)
+----------
+        16
+
+SQL> select  length('HELLO WORLD') from dual;
+
+LENGTH('HELLOWORLD')
+--------------------
+                  11
+
+SQL> select  round(24.3,1) from dual;
+
+ROUND(24.3,1)
+-------------
+         24.3
+
+SQL> select  round(24.33,0) from dual;
+
+ROUND(24.33,0)
+--------------
+            24
+
+SQL> select  round(24.33,-1) from dual;
+
+ROUND(24.33,-1)
+---------------
+             20
+
+SQL> select  trunc(24.33,-1) from dual;
+
+TRUNC(24.33,-1)
+---------------
+             20
+
+SQL> select  trunc(24.33,1) from dual;
+
+TRUNC(24.33,1)
+--------------
+          24.3
+
+SQL> select  trunc(24.33,-2) from dual;
+
+TRUNC(24.33,-2)
+---------------
+              0
+
+SQL> select months_between ('1-JAN-2025','1-JAN-2026') from dual;
+
+MONTHS_BETWEEN('1-JAN-2025','1-JAN-2026')
+-----------------------------------------
+                                      -12
+
+SQL> select months_between ('1-JAN-2026','1-JAN-2025') from dual;
+
+MONTHS_BETWEEN('1-JAN-2026','1-JAN-2025')
+-----------------------------------------
+                                       12
+
+SQL> select add_months('1-JAN-2025',2) from dual;
+
+ADD_MONTH
+---------
+01-MAR-25
+
+SQL> select extract(year from sysdate) from dual;
+
+EXTRACT(YEARFROMSYSDATE)
+------------------------
+                    2025
+
+SQL> select extract(month from sysdate) from dual;
+
+EXTRACT(MONTHFROMSYSDATE)
+-------------------------
+                        7
+
+SQL> select extract(day from sysdate) from dual;
+
+EXTRACT(DAYFROMSYSDATE)
+-----------------------
+                     23
+
+SQL> select last_day('1-JUL-2025') from dual;
+
+LAST_DAY(
+---------
+31-JUL-25
+
+SQL> select last_day('1-JAN-2025') from dual;
+
+LAST_DAY(
+---------
+31-JAN-25
+
+SQL> select last_day('1-FEB-2025') from dual;
+
+LAST_DAY(
+---------
+28-FEB-25
+
+SQL> select max(deptno) from student1;
+
+MAX(DEPTNO)
+-----------
+         50
+
+SQL> select min(deptno) from student1;
+
+MIN(DEPTNO)
+-----------
+         10
+
+SQL> select avg(deptno) from student1;
+
+AVG(DEPTNO)
+-----------
+         28
+
+SQL> select count(deptno) from student1;
+
+COUNT(DEPTNO)
+-------------
+           10
+
+SQL> select count(*) from student1;
+
+  COUNT(*)
+----------
+        10
+
+SQL> select count(*) , deptno from student1
+  2  group by deptno;
+
+  COUNT(*)     DEPTNO
+---------- ----------
+         2         30
+         3         20
+         2         50
+         1         40
+         2         10
+
+SQL> select  deptno from student1
+  2  group by deptno;
+
+    DEPTNO
+----------
+        30
+        20
+        50
+        40
+        10
+
+SQL> select  deptno from student1
+  2  order by deptno asc;
+
+    DEPTNO
+----------
+        10
+        10
+        20
+        20
+        20
+        30
+        30
+        40
+        50
+        50
+
+10 rows selected.
+
+SQL> select  deptno from student1
+  2  order by deptno desc ;
+
+    DEPTNO
+----------
+        50
+        50
+        40
+        30
+        30
+        20
+        20
+        20
+        10
+        10
+
+10 rows selected.
+
+SQL> select deptno from student1
+  2  where studentName ='Ravi';
+
+    DEPTNO
+----------
+        10
+
+SQL> select deptName from department
+  2  where deptno =10;
+
+DEPTNAME
+--------------------
+CSE
+
+SQL> select deptName , deptLoc from department
+  2  where deptno =10;
+
+DEPTNAME             DEPTLOC
+-------------------- --------------------
+CSE                  Davangere
+
+
+SQL> select * from student1;
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       103 Sachin                       40
+       104 Tom                          20
+       105 Jerry                        20
+       106 Jhon                         20
+       107 Jhonny                       30
+       108 Chandhu                      50
+       109 Rhaul                        30
+       110 Rachin                       10
+
+10 rows selected.
+
+SQL> select * from department;
+
+    DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- --------------------
+        10 CSE                  Davangere
+        20 ECE                  Bengaluru
+        30 MEC                  Mumbai
+        40 CIV                  Chennai
+        50 IS                   Davangere
+
+SQL> select deptNo from student1
+  2  where studentName ='Raju';
+
+    DEPTNO
+----------
+        50
+
+SQL> select deptName , deptLoc from department
+  2  where deptNo =50;
+
+DEPTNAME             DEPTLOC
+-------------------- --------------------
+IS                   Davangere
+
+SQL> select deptName ,deptLoc from department
+  2  where deptNo =(select deptNo from student1
+  3  where studentName ='Raju');
+
+DEPTNAME             DEPTLOC
+-------------------- --------------------
+IS                   Davangere
+
+SQL> select deptName ,deptLoc,deptNo from department
+  2  where deptNo =(select deptNo from student1
+  3  where studentName ='Raju');
+
+DEPTNAME             DEPTLOC                  DEPTNO
+-------------------- -------------------- ----------
+IS                   Davangere                    50
+
+SQL> select * from student1
+  2  where deptNo =(select deptNo from department
+  3  where deptName='CSE');
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       102 Ravi                         10
+       110 Rachin                       10
+
+SQL> select deptName ,deptLoc,deptNo from department
+  2  where deptNo =(select deptNo from student1
+  3  where studentName like '%e%' );
+
+DEPTNAME             DEPTLOC                  DEPTNO
+-------------------- -------------------- ----------
+ECE                  Bengaluru                    20
+
+SQL> select deptName ,deptLoc,deptNo from department
+  2  where deptNo in (select deptNo from student1
+  3  where studentId in(101,105,106,109,110) );
+
+DEPTNAME             DEPTLOC                  DEPTNO
+-------------------- -------------------- ----------
+CSE                  Davangere                    10
+ECE                  Bengaluru                    20
+MEC                  Mumbai                       30
+IS                   Davangere                    50
