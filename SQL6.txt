@@ -1,0 +1,186 @@
+SQL> select * from student1
+  2  where rownum <=( select count(*)/2 from student1);
+
+ STUDENTID STUDENTNAME              DEPTNO
+---------- -------------------- ----------
+       101 Raju                         50
+       102 Ravi                         10
+       103 Sachin                       40
+       104 Tom                          20
+       105 Jerry                        20
+
+SQL> select * from (
+  2  select student1.* , row_number() over(order by studentId) as rn from student1)
+  3  where rn >(select count(*) /2 from student1);
+
+ STUDENTID STUDENTNAME              DEPTNO         RN
+---------- -------------------- ---------- ----------
+       106 Jhon                         20          6
+       107 Jhonny                       30          7
+       108 Chandhu                      50          8
+       109 Rhaul                        30          9
+       110 Rachin                       10         10
+
+SQL> select * from student1 cross join department;
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       101 Raju                         50         10 CSE                  Davangere
+       101 Raju                         50         20 ECE                  Bengaluru
+       101 Raju                         50         30 MEC                  Mumbai
+       101 Raju                         50         40 CIV                  Chennai
+       101 Raju                         50         50 IS                   Davangere
+       102 Ravi                         10         10 CSE                  Davangere
+       102 Ravi                         10         20 ECE                  Bengaluru
+       102 Ravi                         10         30 MEC                  Mumbai
+       102 Ravi                         10         40 CIV                  Chennai
+       102 Ravi                         10         50 IS                   Davangere
+       103 Sachin                       40         10 CSE                  Davangere
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       103 Sachin                       40         20 ECE                  Bengaluru
+       103 Sachin                       40         30 MEC                  Mumbai
+       103 Sachin                       40         40 CIV                  Chennai
+       103 Sachin                       40         50 IS                   Davangere
+       104 Tom                          20         10 CSE                  Davangere
+       104 Tom                          20         20 ECE                  Bengaluru
+       104 Tom                          20         30 MEC                  Mumbai
+       104 Tom                          20         40 CIV                  Chennai
+       104 Tom                          20         50 IS                   Davangere
+       105 Jerry                        20         10 CSE                  Davangere
+       105 Jerry                        20         20 ECE                  Bengaluru
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       105 Jerry                        20         30 MEC                  Mumbai
+       105 Jerry                        20         40 CIV                  Chennai
+       105 Jerry                        20         50 IS                   Davangere
+       106 Jhon                         20         10 CSE                  Davangere
+       106 Jhon                         20         20 ECE                  Bengaluru
+       106 Jhon                         20         30 MEC                  Mumbai
+       106 Jhon                         20         40 CIV                  Chennai
+       106 Jhon                         20         50 IS                   Davangere
+       107 Jhonny                       30         10 CSE                  Davangere
+       107 Jhonny                       30         20 ECE                  Bengaluru
+       107 Jhonny                       30         30 MEC                  Mumbai
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       107 Jhonny                       30         40 CIV                  Chennai
+       107 Jhonny                       30         50 IS                   Davangere
+       108 Chandhu                      50         10 CSE                  Davangere
+       108 Chandhu                      50         20 ECE                  Bengaluru
+       108 Chandhu                      50         30 MEC                  Mumbai
+       108 Chandhu                      50         40 CIV                  Chennai
+       108 Chandhu                      50         50 IS                   Davangere
+       109 Rhaul                        30         10 CSE                  Davangere
+       109 Rhaul                        30         20 ECE                  Bengaluru
+       109 Rhaul                        30         30 MEC                  Mumbai
+       109 Rhaul                        30         40 CIV                  Chennai
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       109 Rhaul                        30         50 IS                   Davangere
+       110 Rachin                       10         10 CSE                  Davangere
+       110 Rachin                       10         20 ECE                  Bengaluru
+       110 Rachin                       10         30 MEC                  Mumbai
+       110 Rachin                       10         40 CIV                  Chennai
+       110 Rachin                       10         50 IS                   Davangere
+
+50 rows selected.
+
+SQL> select * from student1,department
+  2  where student1.deptNo = department.deptNo;
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       101 Raju                         50         50 IS                   Davangere
+       102 Ravi                         10         10 CSE                  Davangere
+       103 Sachin                       40         40 CIV                  Chennai
+       104 Tom                          20         20 ECE                  Bengaluru
+       105 Jerry                        20         20 ECE                  Bengaluru
+       106 Jhon                         20         20 ECE                  Bengaluru
+       107 Jhonny                       30         30 MEC                  Mumbai
+       108 Chandhu                      50         50 IS                   Davangere
+       109 Rhaul                        30         30 MEC                  Mumbai
+       110 Rachin                       10         10 CSE                  Davangere
+
+10 rows selected.
+
+SQL> select * from student1 inner join department
+  2  on student1.deptNo = department.deptNo;
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       101 Raju                         50         50 IS                   Davangere
+       102 Ravi                         10         10 CSE                  Davangere
+       103 Sachin                       40         40 CIV                  Chennai
+       104 Tom                          20         20 ECE                  Bengaluru
+       105 Jerry                        20         20 ECE                  Bengaluru
+       106 Jhon                         20         20 ECE                  Bengaluru
+       107 Jhonny                       30         30 MEC                  Mumbai
+       108 Chandhu                      50         50 IS                   Davangere
+       109 Rhaul                        30         30 MEC                  Mumbai
+       110 Rachin                       10         10 CSE                  Davangere
+
+10 rows selected.
+
+SQL> select * from student1 inner join department
+  2  on student1.deptNo = department.deptNo
+  3  where studentName ='Rachin';
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       110 Rachin                       10         10 CSE                  Davangere
+
+SQL> select * from student1 inner join department
+  2  on student1.deptNo = department.deptNo
+  3  where studentName  like  '%a%' or studentName like '%e%';
+
+ STUDENTID STUDENTNAME              DEPTNO     DEPTNO DEPTNAME             DEPTLOC
+---------- -------------------- ---------- ---------- -------------------- --------------------
+       101 Raju                         50         50 IS                   Davangere
+       102 Ravi                         10         10 CSE                  Davangere
+       103 Sachin                       40         40 CIV                  Chennai
+       105 Jerry                        20         20 ECE                  Bengaluru
+       108 Chandhu                      50         50 IS                   Davangere
+       109 Rhaul                        30         30 MEC                  Mumbai
+       110 Rachin                       10         10 CSE                  Davangere
+
+7 rows selected.
+
+SQL> select studentName , deptName from student1, department
+  2  where student1.deptNo = department.deptNo;
+
+STUDENTNAME          DEPTNAME
+-------------------- --------------------
+Raju                 IS
+Ravi                 CSE
+Sachin               CIV
+Tom                  ECE
+Jerry                ECE
+Jhon                 ECE
+Jhonny               MEC
+Chandhu              IS
+Rhaul                MEC
+Rachin               CSE
+10 rows selected.
+
+SQL> select s.studentId ,s.studentName ,d.deptName, d.deptNo from student1 s inner join department d
+  2  on s.deptNo = d.deptNo;
+
+ STUDENTID STUDENTNAME          DEPTNAME                 DEPTNO
+---------- -------------------- -------------------- ----------
+       101 Raju                 IS                           50
+       102 Ravi                 CSE                          10
+       103 Sachin               CIV                          40
+       104 Tom                  ECE                          20
+       105 Jerry                ECE                          20
+       106 Jhon                 ECE                          20
+       107 Jhonny               MEC                          30
+       108 Chandhu              IS                           50
+       109 Rhaul                MEC                          30
+       110 Rachin               CSE                          10
+
+10 rows selected.
